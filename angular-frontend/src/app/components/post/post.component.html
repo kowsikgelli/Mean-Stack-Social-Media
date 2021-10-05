@@ -1,0 +1,31 @@
+<div class="post">
+    <div class="postWrapper">
+        <div class="postTop">
+            <div class="postTopLeft">
+                <img  class="postProfileImg" src="/assets/avatar.jpeg" alt="profile pic" />
+                <span class="postUsername" >{{userNameOfAPost}}</span>
+                <span class="postDate" >5 mins ago</span>
+            </div>
+            <div class="postTopRight">
+                <i class="bi bi-three-dots-vertical"></i>
+            </div>
+        </div>
+        <div class="postCenter">
+            <span class="postText">
+                {{post.desc}}
+            </span>
+            <img *ngIf="post.img" class="postImg" src={{post.img}} alt="post image" />
+        </div>
+        <div class="postBottom">
+            <div class="postBottomLeft">
+                <img class="likeIcon" src="/assets/like.png" alt="like" />
+                <span class="postLikeCounter">15 people like it</span>
+            </div>
+            <div class="postBottomRight">
+                <span class="postCommentText">
+                    9 comments
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
