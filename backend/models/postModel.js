@@ -15,6 +15,9 @@ const PostSchema = new mongoose.Schema(
         likes:{
             type:Array,
             default:[]
+        },
+        cloudinary_id:{
+            type:String
         }
     },
     {timestamps:true}

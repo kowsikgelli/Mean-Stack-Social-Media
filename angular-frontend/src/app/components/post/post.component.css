@@ -58,3 +58,8 @@
     margin-right: 5px;
     cursor: pointer;
 }
+.postTopRightIcon{
+    padding-right: 10px;
+    cursor: pointer;
+    color:tomato
+}

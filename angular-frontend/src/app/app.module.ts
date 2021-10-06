@@ -16,6 +16,10 @@ import { ChatComponent } from './components/chat/chat.component';
 import { ConversationComponent } from './components/conversation/conversation.component';
 import { MessageComponent } from './components/message/message.component';
 import { PostComponent } from './components/post/post.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { PostDeleteDialogComponent } from './components/post-delete-dialog/post-delete-dialog.component';
+import { MaterialModule } from './material/material.module';
+
 
 @NgModule({
   declarations: [
@@ -28,15 +32,19 @@ import { PostComponent } from './components/post/post.component';
     ChatComponent,
     ConversationComponent,
     MessageComponent,
-    PostComponent
+    PostComponent,
+    PostDeleteDialogComponent
   ],
+  entryComponents:[PostDeleteDialogComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     FlashMessagesModule.forRoot(),
     HttpClientModule,
-    SocialLoginModule
+    SocialLoginModule,
+    BrowserAnimationsModule,
+    MaterialModule
   ],
   providers: [
     {

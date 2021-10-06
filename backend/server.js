@@ -28,7 +28,9 @@ connection.on('error',(err)=>{
 app.use(express.json())
 
 //cors middleware
-app.use(cors());
+app.use(cors({
+    origin:"*"
+}));
 
 //passportjs middleware
 app.use(passport.initialize())

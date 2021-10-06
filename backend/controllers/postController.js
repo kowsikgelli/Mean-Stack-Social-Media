@@ -1,11 +1,37 @@
 const Post = require("../models/postModel")
 const User = require("../models/userModel")
-exports.createPost = async (req,res)=>{
+const cloudinary = require("../config/cloudinary")
+const upload = require("../config/multer")
+
+exports.testFileUpload = async(req,res)=>{
     try{
-        const post = await Post.create({
-            userId:req.user._id.toString(),
-            ...req.body
-        })
+        if(req.file){
+            const result = await cloudinary.uploader.upload(req.file.path);
+        }
+        res.send({success:true})
+    }catch(err){
+        res.send({success:false,error:err.message})
+    }
+}
+
+exports.createPost = async (req,res)=>{
+    console.log(req.body)
+    try{
+        let post;
+        if(req.file){
+            const imageResult = await cloudinary.uploader.upload(req.file.path)
+            post = await Post.create({
+                userId:req.user._id.toString(),
+                ...req.body,
+                img:imageResult.secure_url,
+                cloudinary_id:imageResult.public_id
+            })
+        }else{
+            post = await Post.create({
+                userId:req.user._id.toString(),
+                ...req.body
+            })
+        }  
         res.send({success:true,response:post})
     }catch(err){
         res.send({success:false,message:"could not create post",error:err.message})
@@ -33,6 +59,9 @@ exports.updatePost = async (req,res)=>{
 exports.deletePost = async (req,res)=>{
     try{
         const post = await Post.findById(req.params.id)
+        if(post.img){
+            await cloudinary.uploader.destroy(post.cloudinary_id)
+        }
         if(!post){
             res.send({success:false,message:"post with this id is not found"})
             res.end()

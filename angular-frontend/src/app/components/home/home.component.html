@@ -67,18 +67,22 @@
         <div class="feedWrapper">
 
             <!-- share post starts here -->
+            <form (submit)="submitPost()">
             <div class="share">
                 <div class="shareWrapper">
                     <div class="shareTop">
                         <img class="shareProfileImg" src="/assets/avatar.jpeg" alt="profile pic" />
-                        <input placeholder="What's in your mind kowsik" class="shareInput" />
+                        <input type="text" placeholder="What's in your mind?" class="shareInput" name="desc" (change)="postData($event)" />
                     </div>
                     <hr class="shareHr" />
                     <div class="shareBottom">
                         <div class="shareOptions">
                             <div class="shareOption">
                                 <i style="color: tomato;" class="bi bi-images shareIcon"></i>
-                                <span class="shareOptionText">Add Picture</span>
+                                <div>
+                                    <span class="shareOptionText"><label for="picture" style="cursor: pointer;">Add A Picture</label></span>
+                                    <input type="file" name="postImage" id="picture" style="display: none;" (change)="onPictureUpload($event)" />
+                                </div>
                             </div>
                             <div class="shareOption">
                                 <i style="color: green;" class="bi bi-geo-alt-fill shareIcon"></i>
@@ -89,110 +93,16 @@
                                 <span class="shareOptionText">feelings</span>
                             </div>
                         </div>
-                        <button class="shareButton">Share</button>
+                        <button class="shareButton" type="submit">Share</button>
                     </div>
                 </div>
             </div>
+            </form>
             <!-- share post ends -->
 
             <!-- posts starts -->
-            <!-- <div class="post">
-                <div class="postWrapper">
-                    <div class="postTop">
-                        <div class="postTopLeft">
-                            <img class="postProfileImg" src="/assets/avatar.jpeg" alt="profile pic" />
-                            <span class="postUsername">Kowsik</span>
-                            <span class="postDate" >5 mins ago</span>
-                        </div>
-                        <div class="postTopRight">
-                            <i class="bi bi-three-dots-vertical"></i>
-                        </div>
-                    </div>
-                    <div class="postCenter">
-                        <span class="postText">
-                            Hey i am kowsik its my first post
-                        </span>
-                        <img class="postImg" src="/assets/holiday.jpeg" alt="post image" />
-                    </div>
-                    <div class="postBottom">
-                        <div class="postBottomLeft">
-                            <img class="likeIcon" src="/assets/like.png" alt="like" />
-                            <span class="postLikeCounter">15 people like it</span>
-                        </div>
-                        <div class="postBottomRight">
-                            <span class="postCommentText">
-                                9 comments
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
-
-            <!-- <div class="post">
-                <div class="postWrapper">
-                    <div class="postTop">
-                        <div class="postTopLeft">
-                            <img class="postProfileImg" src="/assets/avatar.jpeg" alt="profile pic" />
-                            <span class="postUsername">Kowsik</span>
-                            <span class="postDate" >5 mins ago</span>
-                        </div>
-                        <div class="postTopRight">
-                            <i class="bi bi-three-dots-vertical"></i>
-                        </div>
-                    </div>
-                    <div class="postCenter">
-                        <span class="postText">
-                            Hey i am kowsik its my first post
-                        </span>
-                        <img class="postImg" src="/assets/hellopost.jpeg" alt="post image" />
-                    </div>
-                    <div class="postBottom">
-                        <div class="postBottomLeft">
-                            <img class="likeIcon" src="/assets/like.png" alt="like" />
-                            <span class="postLikeCounter">15 people like it</span>
-                        </div>
-                        <div class="postBottomRight">
-                            <span class="postCommentText">
-                                9 comments
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
-
-            <!-- <div class="post">
-                <div class="postWrapper">
-                    <div class="postTop">
-                        <div class="postTopLeft">
-                            <img class="postProfileImg" src="/assets/avatar.jpeg" alt="profile pic" />
-                            <span class="postUsername">Kowsik</span>
-                            <span class="postDate" >5 mins ago</span>
-                        </div>
-                        <div class="postTopRight">
-                            <i class="bi bi-three-dots-vertical"></i>
-                        </div>
-                    </div>
-                    <div class="postCenter">
-                        <span class="postText">
-                            Hey i am kowsik its my first post
-                        </span>
-                        <img class="postImg" src="/assets/hellopost.jpeg" alt="post image" /> 
-                    </div>
-                    <div class="postBottom">
-                        <div class="postBottomLeft">
-                            <img class="likeIcon" src="/assets/like.png" alt="like" />
-                            <span class="postLikeCounter">15 people like it</span>
-                        </div>
-                        <div class="postBottomRight">
-                            <span class="postCommentText">
-                                9 comments
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
             <div *ngFor="let post of posts">
-                <app-post [post]="post"></app-post>
+                <app-post [post]="post" (refreshFeed)="fetchUserFeed()" ></app-post>
             </div>
             <!-- posts ends here -->
         </div>

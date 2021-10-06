@@ -14,7 +14,6 @@ export class PostService {
   loadToken(){
     const token = localStorage.getItem('id_token')
     this.JwtAuthToken = token
-    console.log(this.JwtAuthToken)
   }
 
   getUserById(userId:any):Observable<any>{
@@ -22,6 +21,7 @@ export class PostService {
     const headers = new HttpHeaders()
       .set('content-type','application/json')
       .set("Authorization",this.JwtAuthToken)
+      .set('Access-Control-Allow-Origin','*')
     return this.http.get(`${this.serverUrl}/user/getuser/${userId}`,{headers:headers})
   }
   getUserFeed():Observable<any>{
@@ -30,5 +30,29 @@ export class PostService {
       .set('content-type','application/json')
       .set("Authorization",this.JwtAuthToken)
     return this.http.get(`${this.serverUrl}/posts/getuserfeed`,{headers:headers})
+  }
+
+  createPost(postData:any):Observable<any>{
+    this.loadToken()
+    const headers = new HttpHeaders()
+      .set("Authorization",this.JwtAuthToken)
+      .set('Access-Control-Allow-Origin','*')
+    return this.http.post(`${this.serverUrl}/posts/createpost`,postData,{headers:headers});
+  }
+
+  deletePost(postId:any):Observable<any>{
+    this.loadToken()
+    const headers = new HttpHeaders()
+      .set("Authorization",this.JwtAuthToken)
+      .set('Access-Control-Allow-Origin','*')
+    return this.http.delete(`${this.serverUrl}/posts/deletepost/${postId}`,{headers:headers});
+  }
+
+  likeordislike(postId:any):Observable<any>{
+    this.loadToken()
+    const headers = new HttpHeaders()
+      .set("Authorization",this.JwtAuthToken)
+      .set('Access-Control-Allow-Origin','*')
+    return this.http.post(`${this.serverUrl}/posts/likeordislike/${postId}`,{headers:headers});
   }
 }
