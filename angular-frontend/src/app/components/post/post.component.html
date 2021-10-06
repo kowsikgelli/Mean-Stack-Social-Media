@@ -18,12 +18,11 @@
         </div>
         <div class="postBottom">
             <div class="postBottomLeft">
-                <img class="likeIcon" src="/assets/like.png" alt="like" />
-                <span class="postLikeCounter">15 people like it</span>
+                <img class="likeIcon" src="/assets/like.png" alt="like" (click)="likeordislike()" />
+                <span class="postLikeCounter">{{noOfLikes}} people liked it</span>
             </div>
             <div class="postBottomRight">
                 <span class="postCommentText">
-                    9 comments
                 </span>
             </div>
         </div>

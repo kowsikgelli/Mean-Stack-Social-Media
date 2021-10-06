@@ -9,7 +9,9 @@ const {
     deleteUser,
     getUser,
     followUser,
-    unFollowUser
+    unFollowUser,
+    getCurrentUserFriends,
+    peopleYouMayKnow
     } = require('../controllers/userControllers')
 // User registration
 router.route("/register").post(register)
@@ -29,6 +31,9 @@ router.route('/getuser/:id').get(getUser)
 router.route('/:id/follow').put(passport.authenticate('jwt',{session:false}),followUser)
 //unfollow a user
 router.route('/:id/unfollow').put(passport.authenticate('jwt',{session:false}),unFollowUser)
-
+//get user friends
+router.route('/getuserfriends').get(passport.authenticate('jwt',{session:false}),getCurrentUserFriends)
+//people you may know
+router.route('/peopleyoumayknow').get(passport.authenticate('jwt',{session:false}),peopleYouMayKnow)
 module.exports = router;
 

@@ -12,8 +12,12 @@ export class HomeComponent implements OnInit {
   posts:any;
   desc:any = ''
   pictureData:any;
+  peopleYouMayKnow:any;
+  friends:any;
   ngOnInit(): void {
     this.fetchUserFeed();
+    this.fetchUnFollowingPeople();
+    this.fetchCurrentUserFriends();
   }
   postData(event:any){
     this.desc = event.target.value;
@@ -28,10 +32,28 @@ export class HomeComponent implements OnInit {
       }
     })
   }
+
+  fetchUnFollowingPeople(){
+    this.postService.getUnFollowingPeople().subscribe(data=>{
+      if(data.success){
+        this.peopleYouMayKnow = data.response;
+        console.log(data.response)
+      }
+    })
+  }
   onPictureUpload(event:any){
     if(event.target.files.length>0){
       this.pictureData = event.target.files[0]
     }
+  }
+
+  fetchCurrentUserFriends(){
+    this.postService.getCurrentUserFriends().subscribe(data=>{
+      if(data.success){
+        this.friends = data.response
+        console.log(data.response)
+      }
+    })
   }
   submitPost(){
     const formData = new FormData();

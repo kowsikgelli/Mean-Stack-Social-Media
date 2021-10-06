@@ -8,7 +8,9 @@ const {
     likeOrDislike,
     getPost,
     getFeed,
-    testFileUpload
+    testFileUpload,
+    getLikes,
+    peopleYouMayKnow,
 } = require("../controllers/postController")
 
 //create a post
@@ -23,6 +25,11 @@ router.route("/likeordislike/:id").put(passport.authenticate('jwt',{session:fals
 router.route("/getpost/:id").get(passport.authenticate('jwt',{session:false}),getPost)
 //get posts of friends
 router.route("/getuserfeed").get(passport.authenticate('jwt',{session:false}),getFeed)
+// get likes of a post
+router.route("/getlikes/:id").get(getLikes)
+//people you may know
+
+
 //test file upload
 router.route("/testupload").post(upload.single('postImage'),testFileUpload)
 

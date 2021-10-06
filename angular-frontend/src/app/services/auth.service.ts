@@ -44,7 +44,7 @@ export class AuthService {
   }
   storeUser(jwtToken: any,user: any):any{
     localStorage.setItem('id_token',jwtToken)
-    //localStorage.setItem('user',JSON.stringify(user))
+    localStorage.setItem('user',JSON.stringify(user))
     this.JwtAuthToken = jwtToken;
     this.user = user;
   }

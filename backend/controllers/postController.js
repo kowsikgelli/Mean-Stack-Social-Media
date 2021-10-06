@@ -59,7 +59,7 @@ exports.updatePost = async (req,res)=>{
 exports.deletePost = async (req,res)=>{
     try{
         const post = await Post.findById(req.params.id)
-        if(post.img){
+        if(post.img && post.userId === req.user._id.toString()){
             await cloudinary.uploader.destroy(post.cloudinary_id)
         }
         if(!post){
@@ -121,3 +121,15 @@ exports.getFeed = async(req,res)=>{
         res.send({success:false,message:"error fetching posts of your followers",error:err.message})
     }
 }
+
+exports.getLikes = async (req,res)=>{
+    try{
+        const post = await Post.findById(req.params.id);
+        res.send({success:true,response:post.likes.length})
+    }catch(err){
+        res.send({success:false,error:err.message})
+    }
+}
+
+
+

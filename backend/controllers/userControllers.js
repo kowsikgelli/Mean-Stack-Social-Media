@@ -170,3 +170,30 @@ exports.unFollowUser = async (req,res)=>{
         res.send({success:false,message:"you cannot unfollow yourself"})
     }
 }
+
+exports.getCurrentUserFriends = async(req,res)=>{
+    try{
+        const currentUser = await User.find({_id:req.user._id})
+        const friends = await Promise.all(currentUser[0].followings.map(async(userId)=>{
+            return await User.findById({_id:userId})
+        }))
+        console.log(friends)
+        res.send({success:true,response:friends})
+    }catch(err){
+        res.send({success:false,error:err.message})
+    }
+}
+
+exports.peopleYouMayKnow = async(req,res)=>{
+    try{
+        const users = await User.find();
+        const currentUser = await User.find({_id:req.user._id})
+        const currentUserFollowings = currentUser[0].followings
+        unFollwingUsers = users.filter(user=>{
+            return !currentUserFollowings.includes(user._id) && user._id.toString() !== req.user._id.toString();
+        })
+        res.send({success:true,response:unFollwingUsers})
+    }catch(err){
+        res.send({success:false,error:err.message})
+    }
+}

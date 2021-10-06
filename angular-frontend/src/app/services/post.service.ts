@@ -19,7 +19,6 @@ export class PostService {
   getUserById(userId:any):Observable<any>{
     this.loadToken()
     const headers = new HttpHeaders()
-      .set('content-type','application/json')
       .set("Authorization",this.JwtAuthToken)
       .set('Access-Control-Allow-Origin','*')
     return this.http.get(`${this.serverUrl}/user/getuser/${userId}`,{headers:headers})
@@ -53,6 +52,26 @@ export class PostService {
     const headers = new HttpHeaders()
       .set("Authorization",this.JwtAuthToken)
       .set('Access-Control-Allow-Origin','*')
-    return this.http.post(`${this.serverUrl}/posts/likeordislike/${postId}`,{headers:headers});
+    return this.http.put(`${this.serverUrl}/posts/likeordislike/${postId}`,null,{headers:headers});
+  }
+
+  getLikes(postId:any):Observable<any>{
+    return this.http.get(`${this.serverUrl}/posts/getlikes/${postId}`)
+  }
+
+  getUnFollowingPeople():Observable<any>{
+    this.loadToken()
+    const headers = new HttpHeaders()
+      .set("Authorization",this.JwtAuthToken)
+      .set('Access-Control-Allow-Origin','*')
+    return this.http.get(`${this.serverUrl}/user/peopleyoumayknow`,{headers:headers})
+  }
+
+  getCurrentUserFriends():Observable<any>{
+    this.loadToken()
+    const headers = new HttpHeaders()
+      .set("Authorization",this.JwtAuthToken)
+      .set('Access-Control-Allow-Origin','*')
+    return this.http.get(`${this.serverUrl}/user/getuserfriends`,{headers:headers})
   }
 }

@@ -13,7 +13,7 @@ export class PostComponent implements OnInit {
   @Input() post:any
   @Output() refreshFeed = new EventEmitter();
   userNameOfAPost:any
-
+  noOfLikes:Number = 0
   constructor(
     private postService:PostService,
     public dialog:MatDialog,
@@ -24,6 +24,7 @@ export class PostComponent implements OnInit {
     this.postService.getUserById(this.post.userId).subscribe(user=>{
       this.userNameOfAPost = user.message.username
     })
+    this.setLikes()
   }
 
   openDialog(){
@@ -36,6 +37,24 @@ export class PostComponent implements OnInit {
           }
           this.refreshFeed.emit();
         })
+      }
+    })
+  }
+  setLikes(){
+    this.postService.getLikes(this.post._id).subscribe(data=>{
+      if(data.success){
+        this.noOfLikes = data.response;
+      }else{
+        console.log(data)
+      }
+    })
+  }
+  likeordislike(){
+    this.postService.likeordislike(this.post._id).subscribe(data=>{
+      if(data.success){
+        this.setLikes()
+      }else{
+        console.log(data)
       }
     })
   }
