@@ -2,9 +2,18 @@
     <div class="postWrapper">
         <div class="postTop">
             <div class="postTopLeft">
-                <img  class="postProfileImg" src="/assets/avatar.jpeg" alt="profile pic" />
+                <div *ngIf="user">
+                    <div *ngIf="user.profilePicture">
+                        <img  class="postProfileImg" src={{user.profilePicture}} alt="profile pic" />
+                    </div>
+                </div>
+                <div *ngIf="user">
+                    <div *ngIf="!user.profilePicture">
+                        <img  class="postProfileImg" src="/assets/avatar.jpeg" alt="profile pic" />
+                    </div>
+                </div>
                 <span class="postUsername" >{{userNameOfAPost}}</span>
-                <span class="postDate" >5 mins ago</span>
+                <span class="postDate" ></span>
             </div>
             <div class="postTopRight">
                 <i class="bi bi-trash-fill postTopRightIcon" mat-raised-button (click)="openDialog()"></i>

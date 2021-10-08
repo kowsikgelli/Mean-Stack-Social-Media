@@ -30,12 +30,12 @@ export class AuthService {
     return this.http.post(`${this.serverUrl}/user/authenticate`, user,{headers:headers}) 
   }
 
-  getProfile():Observable<any>{
+  getCurrentUser():Observable<any>{
     this.loadToken()
     const headers = new HttpHeaders()
       .set('content-type','application/json')
       .set("Authorization",this.JwtAuthToken)
-    return this.http.get(`${this.serverUrl}/user/profile`,{headers:headers})
+    return this.http.get(`${this.serverUrl}/user/currentuser`,{headers:headers})
   }
 
   loadToken(){
@@ -44,7 +44,7 @@ export class AuthService {
   }
   storeUser(jwtToken: any,user: any):any{
     localStorage.setItem('id_token',jwtToken)
-    localStorage.setItem('user',JSON.stringify(user))
+    // localStorage.setItem('user',JSON.stringify(user))
     this.JwtAuthToken = jwtToken;
     this.user = user;
   }

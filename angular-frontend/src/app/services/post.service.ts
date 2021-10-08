@@ -74,4 +74,36 @@ export class PostService {
       .set('Access-Control-Allow-Origin','*')
     return this.http.get(`${this.serverUrl}/user/getuserfriends`,{headers:headers})
   }
+
+  follow(userId:any):Observable<any>{
+    this.loadToken()
+    const headers = new HttpHeaders()
+      .set("Authorization",this.JwtAuthToken)
+      .set('Access-Control-Allow-Origin','*')
+    return this.http.put(`${this.serverUrl}/user/${userId}/follow`,null,{headers:headers})
+  }
+
+  unfollow(userId:any):Observable<any>{
+    this.loadToken()
+    const headers = new HttpHeaders()
+      .set("Authorization",this.JwtAuthToken)
+      .set('Access-Control-Allow-Origin','*')
+    return this.http.put(`${this.serverUrl}/user/${userId}/unfollow`,null,{headers})
+  }
+
+  updateUserProfile(user:any):Observable<any>{
+    this.loadToken()
+    const headers = new HttpHeaders()
+      .set("Authorization",this.JwtAuthToken)
+      .set('Access-Control-Allow-Origin','*')
+    return this.http.put(`${this.serverUrl}/user/updateuser`,user,{headers})
+  }
+
+  updateUserProfilepic(formData:any):Observable<any>{
+    this.loadToken()
+    const headers = new HttpHeaders()
+      .set("Authorization",this.JwtAuthToken)
+      .set('Access-Control-Allow-Origin','*')
+    return this.http.put(`${this.serverUrl}/user/updateprofilepic`,formData,{headers})
+  }
 }

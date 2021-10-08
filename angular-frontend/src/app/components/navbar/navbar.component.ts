@@ -11,21 +11,30 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class NavbarComponent implements OnInit {
 
+  user:any
   constructor(
     public authService:AuthService,
     private router:Router,
     private flashmessages:FlashMessagesService,
-    private socialAuthService: SocialAuthService
+    private socialAuthService: SocialAuthService,
   ) { }
 
   ngOnInit(): void {
+    this.authService.getCurrentUser().subscribe(data=>{
+      if(data.success){
+        this.user = data.user
+      }
+    })
   }
 
   onLogout(){
-    this.socialAuthService.signOut();
     this.authService.logout();
     this.flashmessages.show("You logged Out",{cssClass:'alert-success',timeout:5000})
     this.router.navigate(['register'])
     return false
+  }
+
+  currentUserProfile(){
+    this.router.navigate(['profile',this.user._id])
   }
 }

@@ -14,6 +14,7 @@ export class PostComponent implements OnInit {
   @Output() refreshFeed = new EventEmitter();
   userNameOfAPost:any
   noOfLikes:Number = 0
+  user:any
   constructor(
     private postService:PostService,
     public dialog:MatDialog,
@@ -23,6 +24,7 @@ export class PostComponent implements OnInit {
   ngOnInit(): void {
     this.postService.getUserById(this.post.userId).subscribe(user=>{
       this.userNameOfAPost = user.message.username
+      this.user = user.message
     })
     this.setLikes()
   }

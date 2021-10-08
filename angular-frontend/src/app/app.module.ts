@@ -19,6 +19,10 @@ import { PostComponent } from './components/post/post.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PostDeleteDialogComponent } from './components/post-delete-dialog/post-delete-dialog.component';
 import { MaterialModule } from './material/material.module';
+import { FeedComponent } from './components/feed/feed.component';
+import { LeftbarComponent } from './components/leftbar/leftbar.component';
+import { RightbarComponent } from './components/rightbar/rightbar.component';
+import { EditProfileDialogComponent } from './components/edit-profile-dialog/edit-profile-dialog.component';
 
 
 @NgModule({
@@ -33,9 +37,13 @@ import { MaterialModule } from './material/material.module';
     ConversationComponent,
     MessageComponent,
     PostComponent,
-    PostDeleteDialogComponent
+    PostDeleteDialogComponent,
+    FeedComponent,
+    LeftbarComponent,
+    RightbarComponent,
+    EditProfileDialogComponent,
   ],
-  entryComponents:[PostDeleteDialogComponent],
+  entryComponents:[PostDeleteDialogComponent,EditProfileDialogComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -44,7 +52,7 @@ import { MaterialModule } from './material/material.module';
     HttpClientModule,
     SocialLoginModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
   ],
   providers: [
     {

@@ -21,16 +21,12 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    console.log(this.authService.isTokenExpired())
     this.socialAuthService.authState.subscribe((user) => {
       if(user===null){
-        console.log("log out called")
         this.router.navigate(['login'])
       }else{
         this.user = user;
-        //console.log(user)
         this.authService.socialLogin({username:user.name,email:user.email,password:user.id}).subscribe((data)=>{
-          console.log(user)
           if(data.success){
             this.authService.storeUser(data.message,data.user)
             this.flashMessages.show('Logged In Successful',{cssClass:"alert-success",timeout:5000})
@@ -50,7 +46,6 @@ export class LoginComponent implements OnInit {
       password: this.password
     }
     this.authService.authenticateUser(user).subscribe(data=>{
-      console.log(data)
       if(data.success){
         this.authService.storeUser(data.message,data.user)
         this.flashMessages.show('Logged In Successful',{cssClass:"alert-success",timeout:5000})

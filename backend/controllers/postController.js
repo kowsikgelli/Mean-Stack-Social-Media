@@ -1,7 +1,6 @@
 const Post = require("../models/postModel")
 const User = require("../models/userModel")
 const cloudinary = require("../config/cloudinary")
-const upload = require("../config/multer")
 
 exports.testFileUpload = async(req,res)=>{
     try{
@@ -15,7 +14,7 @@ exports.testFileUpload = async(req,res)=>{
 }
 
 exports.createPost = async (req,res)=>{
-    console.log(req.body)
+    console.log(req)
     try{
         let post;
         if(req.file){
@@ -111,6 +110,7 @@ exports.getFeed = async(req,res)=>{
         currentUserFriendsPosts = await Promise.all(currentUserFriends[0].followings.map(async(friend)=>{
             return  await Post.find({userId:friend})
         }))
+        
         currentUserFriendsPosts.map((friendpost)=>{
             friendpost.map(post=>{
                 currentUserPosts.push(post)

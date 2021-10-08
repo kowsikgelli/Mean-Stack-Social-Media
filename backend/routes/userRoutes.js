@@ -1,9 +1,10 @@
 const router = require('express').Router();
 const passport = require('passport');
+const upload = require('../config/multer')
 const {
     register,
     authenticate,
-    profile,
+    currentUser,
     socialLogin,
     updateUser,
     deleteUser,
@@ -11,14 +12,16 @@ const {
     followUser,
     unFollowUser,
     getCurrentUserFriends,
-    peopleYouMayKnow
+    peopleYouMayKnow,
+    updateProfilePic,
+    updateCoverPic
     } = require('../controllers/userControllers')
 // User registration
 router.route("/register").post(register)
 //User login
 router.route("/authenticate").post(authenticate)
 //check user profile
-router.route("/profile").get(passport.authenticate('jwt',{session:false}),profile)
+router.route("/currentuser").get(passport.authenticate('jwt',{session:false}),currentUser)
 //User login with google
 router.route('/sociallogin').post(socialLogin)
 //Update user info
@@ -35,5 +38,10 @@ router.route('/:id/unfollow').put(passport.authenticate('jwt',{session:false}),u
 router.route('/getuserfriends').get(passport.authenticate('jwt',{session:false}),getCurrentUserFriends)
 //people you may know
 router.route('/peopleyoumayknow').get(passport.authenticate('jwt',{session:false}),peopleYouMayKnow)
+// update profile picture
+router.route('/updateprofilepic').put(passport.authenticate('jwt',{session:false}),upload.single('profilePic'),updateProfilePic)
+//update cover photo
+router.route('/updatecoverpic').put(passport.authenticate('jwt',{session:false}),upload.single('coverPicture'),updateCoverPic)
+
 module.exports = router;
 

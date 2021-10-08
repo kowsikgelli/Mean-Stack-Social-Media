@@ -63,3 +63,18 @@
     cursor: pointer;
     color:tomato;
 }
+
+.postText{
+    font-size: 20px;
+    font-weight: 500;
+    margin:15px 0;
+    color:#464444
+}
+
+.postLikeCounter{
+    font-size:15px;
+}
+.postCommentText{
+    cursor: pointer;
+    font-size:15px;
+}

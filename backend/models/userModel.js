@@ -43,8 +43,13 @@ const UserSchema = new mongoose.Schema({
         type:String
     },
     relationship:{
-        type:Number,
-        enum:[1,2,3]
+        type:String
+    },
+    cloudinary_id:{
+        type:String
+    },
+    cloudinary_coverpic_id:{
+        typr:String
     }
 }
 ,

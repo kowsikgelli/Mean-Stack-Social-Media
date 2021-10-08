@@ -1,5 +1,6 @@
 const User = require('../models/userModel')
 const bcrypt = require('bcrypt')
+const cloudinary = require("../config/cloudinary")
 
 exports.register = async (req,res,next)=>{
     console.log("entered register")
@@ -82,8 +83,7 @@ exports.socialLogin = async(req,res,next)=>{
     }
 }
 
-exports.profile = async (req,res)=>{
-    console.log("entered profile")
+exports.currentUser = async (req,res)=>{
     res.send({success:true,user:req.user})
 }
 
@@ -193,6 +193,36 @@ exports.peopleYouMayKnow = async(req,res)=>{
             return !currentUserFollowings.includes(user._id) && user._id.toString() !== req.user._id.toString();
         })
         res.send({success:true,response:unFollwingUsers})
+    }catch(err){
+        res.send({success:false,error:err.message})
+    }
+}
+
+exports.updateProfilePic = async (req,res)=>{
+    try{
+        if(req.file){
+            const imageResult = await cloudinary.uploader.upload(req.file.path)
+            const user = await User.findByIdAndUpdate(req.user._id,{
+                profilePicture:imageResult.secure_url,
+                cloudinary_id:imageResult.public_id
+            })
+            res.send({sucess:true,response:user})
+        }
+    }catch(err){
+        res.send({success:false,error:err.message})
+    }
+}
+
+exports.updateCoverPic = async(req,res)=>{
+    try{
+        if(req.file){
+            const imageResult = await cloudinary.uploader.upload(req.file.path)
+            const user = await User.findByIdAndUpdate(req.user._id,{
+                coverPicture:imageResult.secure_url,
+                cloudinary_coverpic_id:imageResult.public_id
+            })
+        }
+        res.send({success:true,response:user})
     }catch(err){
         res.send({success:false,error:err.message})
     }
