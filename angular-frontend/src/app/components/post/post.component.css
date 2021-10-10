@@ -78,3 +78,10 @@
     cursor: pointer;
     font-size:15px;
 }
+.alreadylikedIcon{
+    width:60px;
+    height:50px;
+    margin-right: 5px;
+    cursor: pointer;
+    opacity: 0.2;
+}

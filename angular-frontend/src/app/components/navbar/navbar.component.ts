@@ -33,8 +33,11 @@ export class NavbarComponent implements OnInit {
     this.router.navigate(['register'])
     return false
   }
-
+  redirectTo(uri:any){
+    this.router.navigateByUrl('/', {skipLocationChange: true}).then(()=>
+    this.router.navigate(uri));
+  }
   currentUserProfile(){
-    this.router.navigate(['profile',this.user._id])
+    this.redirectTo(['profile',this.user._id])
   }
 }

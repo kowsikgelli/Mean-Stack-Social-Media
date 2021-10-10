@@ -1,6 +1,6 @@
 import { Component, OnInit} from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { PostService } from 'src/app/services/post.service';
 import { MatDialog } from '@angular/material/dialog';
 import { EditProfileDialogComponent } from '../edit-profile-dialog/edit-profile-dialog.component';
@@ -18,7 +18,8 @@ export class ProfileComponent implements OnInit {
     public authService: AuthService,
     private activatedroute: ActivatedRoute,
     private postService:PostService,
-    public dialog:MatDialog
+    public dialog:MatDialog,
+    public router:Router
     ) { }
 
   ngOnInit(): void {
@@ -53,15 +54,20 @@ export class ProfileComponent implements OnInit {
     this.postService.follow(this.user._id).subscribe(data=>{
       console.log(data)
       this.checkIfCurrentUserIsfollowingTheUser()
+      this.redirectTo(['profile',this.user._id])
     })
   }
   unfollow(){
     this.postService.unfollow(this.user._id).subscribe(data=>{
       console.log(data)
       this.checkIfCurrentUserIsfollowingTheUser()
+      this.redirectTo(['profile',this.user._id])
     })
   }
-
+  redirectTo(uri:any){
+    this.router.navigateByUrl('/', {skipLocationChange: true}).then(()=>
+    this.router.navigate(uri));
+  }
   openDialog(){
     const dialogRef = this.dialog.open(EditProfileDialogComponent,{
       data:this.user

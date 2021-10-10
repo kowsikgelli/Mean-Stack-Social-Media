@@ -14,7 +14,6 @@ exports.testFileUpload = async(req,res)=>{
 }
 
 exports.createPost = async (req,res)=>{
-    console.log(req)
     try{
         let post;
         if(req.file){

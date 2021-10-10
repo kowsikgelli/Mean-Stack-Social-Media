@@ -1,6 +1,8 @@
 <div class="navbarContainer">
     <div class="navbarLeft">
-        <div class="logo">social media</div>
+        <a routerLink="" routerLinkActive= active style="text-decoration: none;">
+            <div class="logo">social media</div>
+        </a>
     </div>
     <div class="navbarCenter">
         <div class="searchbar" *ngIf="!authService.isTokenExpired()" >

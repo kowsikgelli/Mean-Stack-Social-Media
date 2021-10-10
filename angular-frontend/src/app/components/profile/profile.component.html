@@ -7,31 +7,7 @@
   <div class="profileRight">
     <div class="profileRightTop">
       <div class="profileCover">
-        <!-- <div *ngIf="user">
-          <div *ngIf="!isCurrentUserProfile">
-            <div *ngIf="user.coverPicture">
-              <img src={{user.coverPicture}} alt="cover photo" class="profileCoverImg" />
-            </div>
-            <div *ngIf="!user.coverPicture">
-              <img src="/assets/holiday.jpeg" alt="cover photo" class="profileCoverImg" />
-            </div>
-          </div>
-        </div>
-
-        <div *ngIf="user">
-          <div *ngIf="isCurrentUserProfile">
-            <label for="picture">
-              <div *ngIf="user.coverPicture">
-                <img src={{user.coverPicture}} alt="cover photo" class="profileCoverImg" />
-              </div>
-              <div *ngIf="!user.coverPicture">
-                <img src="/assets/holiday.jpeg" alt="cover photo" class="profileCoverImg" />
-              </div>
-            </label>
-            <input type="file" name="coverPicture" id="picture" style="display: none;" (change)="onCoverPicUpload($event)" />
-          </div>
-        </div> -->
-        <img src="/assets/holiday.jpeg" alt="cover photo" class="profileCoverImg" />
+        <img src="/assets/coverpic.png" alt="cover photo" class="profileCoverImg" />
         <!-- not current user should not have acess to add profile picture -->
         <div *ngIf="user">
           <div *ngIf="!isCurrentUserProfile">

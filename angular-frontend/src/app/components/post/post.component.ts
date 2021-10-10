@@ -3,6 +3,8 @@ import { PostService } from 'src/app/services/post.service';
 import {MatDialog} from '@angular/material/dialog'
 import { PostDeleteDialogComponent } from '../post-delete-dialog/post-delete-dialog.component';
 import {FlashMessagesService } from 'flash-messages-angular';
+import { AuthService } from 'src/app/services/auth.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-post',
   templateUrl: './post.component.html',
@@ -15,10 +17,15 @@ export class PostComponent implements OnInit {
   userNameOfAPost:any
   noOfLikes:Number = 0
   user:any
+  currentUser:any
+  isCurrentUserProfile:any
+  isCurrentUserLiked:any
   constructor(
     private postService:PostService,
     public dialog:MatDialog,
     private flashMessages: FlashMessagesService,
+    private authService: AuthService,
+    private router:Router
     ) { }
 
   ngOnInit(): void {
@@ -26,9 +33,23 @@ export class PostComponent implements OnInit {
       this.userNameOfAPost = user.message.username
       this.user = user.message
     })
+    this.fetchCurrentUser()
     this.setLikes()
   }
-
+  fetchCurrentUser(){
+    this.authService.getCurrentUser().subscribe(data=>{
+      if(data.success){
+        this.currentUser = data.user
+      }
+      if(this.currentUser && this.user){
+        this.isCurrentUserProfile = (this.user._id === this.currentUser._id)
+      }
+      this.checkIfCurrentUserLikedOrNot()
+    })
+  }
+  checkIfCurrentUserLikedOrNot(){
+    this.isCurrentUserLiked = this.post.likes.includes(this.currentUser._id)
+  }
   openDialog(){
     const postDialogRef = this.dialog.open(PostDeleteDialogComponent);
     postDialogRef.afterClosed().subscribe(result=>{
@@ -42,6 +63,7 @@ export class PostComponent implements OnInit {
       }
     })
   }
+
   setLikes(){
     this.postService.getLikes(this.post._id).subscribe(data=>{
       if(data.success){
@@ -51,8 +73,10 @@ export class PostComponent implements OnInit {
       }
     })
   }
+  
   likeordislike(){
     this.postService.likeordislike(this.post._id).subscribe(data=>{
+      this.refreshFeed.emit()
       if(data.success){
         this.setLikes()
       }else{
@@ -60,5 +84,4 @@ export class PostComponent implements OnInit {
       }
     })
   }
-
 }

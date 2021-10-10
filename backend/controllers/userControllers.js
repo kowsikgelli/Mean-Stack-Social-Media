@@ -3,16 +3,13 @@ const bcrypt = require('bcrypt')
 const cloudinary = require("../config/cloudinary")
 
 exports.register = async (req,res,next)=>{
-    console.log("entered register")
     const {username,email,password} = req.body;
-    console.log(req.body)
     try{
         const user = await User.create({
             username,
             email,
             password
         })
-        console.log("exited register")
         res.send({success:true,message:"Registration Succesful"})
     }catch(err){
         res.send({success:false,message:"user registraion failed",err:err.message})
@@ -20,10 +17,7 @@ exports.register = async (req,res,next)=>{
 }
 
 exports.authenticate = async (req,res,next)=>{
-    console.log("entered authenticate")
     const {email , password} = req.body;
-    console.log(req.body)
-    console.log(password);
     try{
         const user = await User.findOne({email:email});
         if(!user){
@@ -33,7 +27,6 @@ exports.authenticate = async (req,res,next)=>{
         const isMatch = await user.matchpassword(password);
         if(isMatch){
             const token = user.getSignedToken();
-            console.log("exited autheticate")
             res.send({
                 success:true,
                 message:'JWT '+token,
@@ -50,8 +43,6 @@ exports.authenticate = async (req,res,next)=>{
 
 exports.socialLogin = async(req,res,next)=>{
     const {email,password,username} = req.body
-    console.log("entered social login")
-    console.log(req.body)
     try{
         let user = await User.findOne({email:email});
         if(!user){
@@ -177,7 +168,6 @@ exports.getCurrentUserFriends = async(req,res)=>{
         const friends = await Promise.all(currentUser[0].followings.map(async(userId)=>{
             return await User.findById({_id:userId})
         }))
-        console.log(friends)
         res.send({success:true,response:friends})
     }catch(err){
         res.send({success:false,error:err.message})
