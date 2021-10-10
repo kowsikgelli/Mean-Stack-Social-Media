@@ -1,21 +1,20 @@
 import { Injectable } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ValidateService {
+  constructor() {}
 
-  constructor() { }
-
-  validateRegister(user: any): boolean{
-    if(user.username == "" || user.email == "" || user.password == ""){
-      return false
+  validateRegister(user: any): boolean {
+    if (user.username == '' || user.email == '' || user.password == '') {
+      return false;
     }
-    return true
+    return true;
   }
 
-  validateEmail(email: string){
+  validateEmail(email: string) {
     const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-   return emailPattern.test(email); 
+    return emailPattern.test(email);
   }
 }

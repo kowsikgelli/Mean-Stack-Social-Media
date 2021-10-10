@@ -6,10 +6,10 @@
 body {
   margin: 0;
   padding: 0;
-  background: #DDD;
+  background: #ddd;
   font-size: 16px;
   color: #222;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   font-weight: 300;
 }
 
@@ -18,7 +18,7 @@ body {
   margin: 5% auto;
   width: 600px;
   height: 400px;
-  background: #FFF;
+  background: #fff;
   border-radius: 2px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
 }
@@ -48,8 +48,8 @@ input[type="password"] {
   width: 220px;
   height: 32px;
   border: none;
-  border-bottom: 1px solid #AAA;
-  font-family: 'Roboto', sans-serif;
+  border-bottom: 1px solid #aaa;
+  font-family: "Roboto", sans-serif;
   font-weight: 400;
   font-size: 15px;
   transition: 0.2s ease;
@@ -69,8 +69,8 @@ input[type="submit"] {
   background: #16a085;
   border: none;
   border-radius: 2px;
-  color: #FFF;
-  font-family: 'Roboto', sans-serif;
+  color: #fff;
+  font-family: "Roboto", sans-serif;
   font-weight: 500;
   text-transform: uppercase;
   transition: 0.1s ease;
@@ -96,7 +96,7 @@ input[type="submit"]:active {
   left: 280px;
   width: 40px;
   height: 40px;
-  background: #DDD;
+  background: #ddd;
   border-radius: 50%;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
   line-height: 40px;
@@ -111,7 +111,7 @@ input[type="submit"]:active {
   padding: 40px;
   width: 300px;
   height: 400px;
-  background: url('https://goo.gl/YbktSj');
+  background: url("https://goo.gl/YbktSj");
   background-size: cover;
   background-position: center;
   border-radius: 0 2px 2px 0;
@@ -121,7 +121,7 @@ input[type="submit"]:active {
   display: block;
   margin-bottom: 40px;
   font-size: 28px;
-  color: #FFF;
+  color: #fff;
   text-align: center;
 }
 
@@ -131,8 +131,8 @@ button.social-signin {
   height: 36px;
   border: none;
   border-radius: 2px;
-  color: #FFF;
-  font-family: 'Roboto', sans-serif;
+  color: #fff;
+  font-family: "Roboto", sans-serif;
   font-weight: 500;
   transition: 0.2s ease;
   cursor: pointer;
@@ -150,13 +150,13 @@ button.social-signin:active {
 }
 
 button.social-signin.facebook {
-  background: #32508E;
+  background: #32508e;
 }
 
 button.social-signin.twitter {
-  background: #55ACEE;
+  background: #55acee;
 }
 
 button.social-signin.google {
-  background: #DD4B39;
+  background: #dd4b39;
 }

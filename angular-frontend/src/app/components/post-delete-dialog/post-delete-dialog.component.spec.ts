@@ -8,9 +8,8 @@ describe('PostDeleteDialogComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PostDeleteDialogComponent ]
-    })
-    .compileComponents();
+      declarations: [PostDeleteDialogComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

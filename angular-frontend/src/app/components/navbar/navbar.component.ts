@@ -7,37 +7,40 @@ import { AuthService } from 'src/app/services/auth.service';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.css']
+  styleUrls: ['./navbar.component.css'],
 })
 export class NavbarComponent implements OnInit {
-
-  user:any
+  user: any;
   constructor(
-    public authService:AuthService,
-    private router:Router,
-    private flashmessages:FlashMessagesService,
-    private socialAuthService: SocialAuthService,
-  ) { }
+    public authService: AuthService,
+    private router: Router,
+    private flashmessages: FlashMessagesService,
+    private socialAuthService: SocialAuthService
+  ) {}
 
   ngOnInit(): void {
-    this.authService.getCurrentUser().subscribe(data=>{
-      if(data.success){
-        this.user = data.user
+    this.authService.getCurrentUser().subscribe((data) => {
+      if (data.success) {
+        this.user = data.user;
       }
-    })
+    });
   }
 
-  onLogout(){
+  onLogout() {
     this.authService.logout();
-    this.flashmessages.show("You logged Out",{cssClass:'alert-success',timeout:5000})
-    this.router.navigate(['register'])
-    return false
+    this.flashmessages.show('You logged Out', {
+      cssClass: 'alert-success',
+      timeout: 5000,
+    });
+    this.router.navigate(['register']);
+    return false;
   }
-  redirectTo(uri:any){
-    this.router.navigateByUrl('/', {skipLocationChange: true}).then(()=>
-    this.router.navigate(uri));
+  redirectTo(uri: any) {
+    this.router
+      .navigateByUrl('/', { skipLocationChange: true })
+      .then(() => this.router.navigate(uri));
   }
-  currentUserProfile(){
-    this.redirectTo(['profile',this.user._id])
+  currentUserProfile() {
+    this.redirectTo(['profile', this.user._id]);
   }
 }
