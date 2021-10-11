@@ -5,7 +5,11 @@ const {
   getUserConversations,
 } = require("../controllers/conversationContoller");
 
-router.route("/createConversation").post(newConversation);
-router.route("/getUserConversations/:userId").get(getUserConversations);
+router
+  .route("/createConversation")
+  .post(passport.authenticate("jwt", { session: false }), newConversation);
+router
+  .route("/getUserConversations")
+  .get(passport.authenticate("jwt", { session: false }), getUserConversations);
 
 module.exports = router;

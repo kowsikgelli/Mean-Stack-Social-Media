@@ -5,7 +5,9 @@ const {
   getMessagesOfaConversation,
 } = require("../controllers/messageController");
 
-router.route("/newMessage").post(newMessage);
+router
+  .route("/newMessage")
+  .post(passport.authenticate("jwt", { session: false }), newMessage);
 router.route("/getMessages/:conversationId").get(getMessagesOfaConversation);
 
 module.exports = router;

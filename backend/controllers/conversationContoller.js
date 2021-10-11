@@ -1,10 +1,10 @@
 const Conversation = require("../models/conversationModel");
 
 exports.newConversation = async (req, res) => {
-  const { senderId, receiverId } = req.body;
+  const {receiverId } = req.body;
   try {
     const conversation = await Conversation.create({
-      members: [senderId, receiverId],
+      members: [req.user._id.toString(), receiverId],
     });
     res.send({ success: true, response: conversation });
   } catch (err) {
@@ -15,7 +15,7 @@ exports.newConversation = async (req, res) => {
 exports.getUserConversations = async (req, res) => {
   try {
     const conversations = await Conversation.find({
-      members: { $in: [req.params.userId] },
+      members: { $in: [req.user._id.toString()] },
     });
     res.send({ success: true, response: conversations });
   } catch (err) {

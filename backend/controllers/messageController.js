@@ -1,11 +1,11 @@
 const Message = require("../models/messageModel");
 
 exports.newMessage = async (req, res) => {
-  const { conversationId, sender, text } = req.body;
+  const { conversationId, text } = req.body;
   try {
     const newMessage = await Message.create({
       conversationId,
-      sender,
+      sender: req.user._id.toString(),
       text,
     });
     res.send({ success: true, response: newMessage });
