@@ -5,6 +5,7 @@ import { PostDeleteDialogComponent } from '../post-delete-dialog/post-delete-dia
 import { FlashMessagesService } from 'flash-messages-angular';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
+import { UpdatePostComponent } from '../update-post/update-post.component';
 @Component({
   selector: 'app-post',
   templateUrl: './post.component.html',
@@ -66,6 +67,25 @@ export class PostComponent implements OnInit {
     });
   }
 
+  openEditPostDialog(){
+    const editPostDialogRef = this.dialog.open(UpdatePostComponent,{
+      data:this.post
+    });
+    editPostDialogRef.afterClosed().subscribe((result)=>{
+      console.log(result)
+      console.log(this.post._id)
+      this.postService.updatePost(result,this.post._id).subscribe(data=>{
+        if(!data.success){
+          this.flashMessages.show(data.message, {
+            cssClass: 'alert-danger',
+            timeout: 5000,
+          });
+        }
+        console.log(data);
+        this.refreshFeed.emit();
+      })
+    })
+  }
   setLikes() {
     this.postService.getLikes(this.post._id).subscribe((data) => {
       if (data.success) {

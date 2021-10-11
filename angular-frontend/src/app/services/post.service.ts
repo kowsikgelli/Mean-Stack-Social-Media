@@ -9,6 +9,7 @@ export class PostService {
   JwtAuthToken: any;
   user: any;
   serverUrl = 'http://localhost:5000';
+  //serverUrl = 'http://3.17.149.82:5000';
   constructor(private http: HttpClient) {}
 
   loadToken() {
@@ -45,6 +46,14 @@ export class PostService {
     });
   }
 
+  updatePost(postData:any,postId:any):Observable<any>{
+    this.loadToken();
+    const headers = new HttpHeaders()
+      .set('Authorization', this.JwtAuthToken)
+      .set('Access-Control-Allow-Origin', '*');
+    return this.http.put(`${this.serverUrl}/posts/updatepost/${postId}`,postData,{headers});
+  }
+  
   deletePost(postId: any): Observable<any> {
     this.loadToken();
     const headers = new HttpHeaders()

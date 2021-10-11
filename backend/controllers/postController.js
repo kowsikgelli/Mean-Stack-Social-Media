@@ -48,7 +48,7 @@ exports.updatePost = async (req, res) => {
       res.end();
     }
     if (post.userId === req.user._id.toString()) {
-      await Post.updateOne({ $set: req.body });
+      await post.updateOne({ $set: req.body });
       res.send({ success: true, message: "post updated sucessfully" });
     } else {
       res.send({ success: false, message: "you can update only your post" });

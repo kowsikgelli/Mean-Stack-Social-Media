@@ -62,7 +62,10 @@
   cursor: pointer;
   color: tomato;
 }
-
+.postEditIcon{
+    padding-right: 10px;
+    cursor: pointer;
+}
 .postText {
   font-size: 20px;
   font-weight: 500;

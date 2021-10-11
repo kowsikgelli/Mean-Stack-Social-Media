@@ -10,6 +10,7 @@ export class AuthService {
   JwtAuthToken: any;
   user: any;
   serverUrl = 'http://localhost:5000';
+  //serverUrl = 'http://3.17.149.82:5000';
   constructor(private http: HttpClient) {}
 
   addUser(user: Object): Observable<any> {

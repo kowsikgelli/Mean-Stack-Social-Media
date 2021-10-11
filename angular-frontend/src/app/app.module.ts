@@ -23,6 +23,7 @@ import { FeedComponent } from './components/feed/feed.component';
 import { LeftbarComponent } from './components/leftbar/leftbar.component';
 import { RightbarComponent } from './components/rightbar/rightbar.component';
 import { EditProfileDialogComponent } from './components/edit-profile-dialog/edit-profile-dialog.component';
+import { UpdatePostComponent } from './components/update-post/update-post.component';
 
 
 @NgModule({
@@ -42,8 +43,13 @@ import { EditProfileDialogComponent } from './components/edit-profile-dialog/edi
     LeftbarComponent,
     RightbarComponent,
     EditProfileDialogComponent,
+    UpdatePostComponent,
   ],
-  entryComponents:[PostDeleteDialogComponent,EditProfileDialogComponent],
+  entryComponents: [
+    PostDeleteDialogComponent,
+    EditProfileDialogComponent,
+    UpdatePostComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -64,12 +70,12 @@ import { EditProfileDialogComponent } from './components/edit-profile-dialog/edi
             id: GoogleLoginProvider.PROVIDER_ID,
             provider: new GoogleLoginProvider(
               '864971037741-dq3o1n51o2nud80ruqabvivnthisiksg.apps.googleusercontent.com'
-            )
-          }
-        ]
+            ),
+          },
+        ],
       } as SocialAuthServiceConfig,
-    }
+    },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
