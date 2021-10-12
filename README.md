@@ -80,4 +80,29 @@ in your case ypu may not have any posts or friends.
 
 your post will be automatically added to the feed.
 
-![](screenshots/home.png)
+![](screenshots/addpost.png)
+
+The Enjoying nature text and selected photo will be added in the feed like this
+
+![](screenshots/postadded.png)
+
+4) you can update and delete your posts. you can find the edit and delete icons on top right of a post.
+
+![](screenshots/editanddelete.png)
+
+5) you can see your friends in the left side bar and you can see people you may know on the right side bar. If you click any of these you can see their profile you can follow and unfollow them. The friedns list in left side bar are the people you are following. Once followed the person will be added to your friend list you can see their posts in your feed and you can like them.
+
+this is how their profile page looks like
+
+![](screenshots/otherprofile.png)
+
+6) You can see your profile by clicking profile icon on top right of navbar.
+
+![](screenshots/profile.png)
+
+7) you can edit your profile by clicking edit profile button and To upload a profile picture click on the circle and choose a photo to upload.
+
+![](screenshots/editprofile.png)
+
+will add new features in future :smiley: 
+
