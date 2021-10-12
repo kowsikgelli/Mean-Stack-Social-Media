@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { User } from '../interfaces/user';
+
 @Injectable({
   providedIn: 'root',
 })
@@ -53,7 +53,7 @@ export class AuthService {
   }
   storeUser(jwtToken: any, user: any): any {
     localStorage.setItem('id_token', jwtToken);
-    // localStorage.setItem('user',JSON.stringify(user))
+    //localStorage.setItem('user',JSON.stringify(user))
     this.JwtAuthToken = jwtToken;
     this.user = user;
   }

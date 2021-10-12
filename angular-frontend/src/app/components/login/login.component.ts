@@ -67,6 +67,7 @@ export class LoginComponent implements OnInit {
           cssClass: 'alert-success',
           timeout: 5000,
         });
+
         this.router.navigate(['']);
       } else {
         this.flashMessages.show(data.message, {
@@ -76,7 +77,6 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['login']);
       }
     });
-    
   }
   
   signInWithGoogle(): void {

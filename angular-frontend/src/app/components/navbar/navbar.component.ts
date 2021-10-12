@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { SocialAuthService } from 'angularx-social-login';
 import { FlashMessagesService } from 'flash-messages-angular';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -10,16 +9,23 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./navbar.component.css'],
 })
 export class NavbarComponent implements OnInit {
-  @Input() user:any;
+  
+  user:any
   constructor(
     public authService: AuthService,
     private router: Router,
     private flashmessages: FlashMessagesService,
-    private socialAuthService: SocialAuthService
   ) {}
 
   ngOnInit(): void {
+    this.authService.getCurrentUser().subscribe((data) => {
+      if (data.success) {
+        console.log(data.user);
+        this.user = data.user;
+      }
+    });
   }
+  
 
   onLogout() {
     this.authService.logout();
