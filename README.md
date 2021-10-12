@@ -3,7 +3,7 @@ A Mean Stack Social Media Application with JWT authentication. You can post text
 
 view http://ec2-3-17-149-82.us-east-2.compute.amazonaws.com/
 
-###Tech Stack
+### Tech Stack
 1) NodeJs
 2) ExpressJs
 3) MongoDb
