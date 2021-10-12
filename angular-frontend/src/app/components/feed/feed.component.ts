@@ -1,6 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { PostService } from 'src/app/services/post.service';
+import { PostComponent } from '../post/post.component';
 
 @Component({
   selector: 'app-feed',
@@ -8,6 +9,7 @@ import { PostService } from 'src/app/services/post.service';
   styleUrls: ['./feed.component.css'],
 })
 export class FeedComponent implements OnInit {
+  @ViewChild(PostComponent) public postComponent: any
   currentUser: any;
   constructor(
     public postService: PostService,
@@ -55,6 +57,7 @@ export class FeedComponent implements OnInit {
     }
     this.postService.createPost(formData).subscribe((data) => {
       this.fetchUserFeed();
+      this.postComponent.fetchCurrentUser();
       console.log(data);
     });
     this.desc = '';

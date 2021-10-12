@@ -53,7 +53,7 @@ export class PostService {
       .set('Access-Control-Allow-Origin', '*');
     return this.http.put(`${this.serverUrl}/posts/updatepost/${postId}`,postData,{headers});
   }
-  
+
   deletePost(postId: any): Observable<any> {
     this.loadToken();
     const headers = new HttpHeaders()

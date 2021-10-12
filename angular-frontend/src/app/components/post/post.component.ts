@@ -32,8 +32,8 @@ export class PostComponent implements OnInit {
     this.postService.getUserById(this.post.userId).subscribe((user) => {
       this.userNameOfAPost = user.message.username;
       this.user = user.message;
+      this.fetchCurrentUser();
     });
-    this.fetchCurrentUser();
     this.setLikes();
   }
   fetchCurrentUser() {

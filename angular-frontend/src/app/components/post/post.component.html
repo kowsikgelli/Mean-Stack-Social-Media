@@ -25,7 +25,10 @@
       </div>
       <div class="postTopRight">
         <div *ngIf="isCurrentUserProfile">
-          <i class="bi bi-pencil-square postEditIcon" (click)="openEditPostDialog()"></i>
+          <i
+            class="bi bi-pencil-square postEditIcon"
+            (click)="openEditPostDialog()"
+          ></i>
           <i
             class="bi bi-trash-fill postTopRightIcon"
             mat-raised-button
