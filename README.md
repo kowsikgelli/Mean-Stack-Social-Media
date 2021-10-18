@@ -1,7 +1,7 @@
 # Mean-Stack-Social-Media
 A Mean Stack Social Media Application with JWT authentication. You can post text and images, follow other users and like their posts. You can edit and delete your posts. you can edit your profile  info.
 
-view http://ec2-3-17-149-82.us-east-2.compute.amazonaws.com/
+view http://ec2-3-12-198-6.us-east-2.compute.amazonaws.com/
 
 ### Tech Stack
 1) NodeJs
